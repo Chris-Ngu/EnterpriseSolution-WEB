@@ -15,13 +15,13 @@ mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true});
 const connection = mongoose.connection;
 connection.once('open', () => {
     console.log("MongoDB connection established");
-});
+})
 
 //routers
 //could use this in the create login first
 const usersRouter = require('./routes/users');
 app.use('/login', usersRouter)
 
-app.listen(port, () =>{
-    console.log('Server is running on part: ${ port }');
+app.listen(port, () => {
+    console.log(`Server is running on port: ${ port }`);
 });

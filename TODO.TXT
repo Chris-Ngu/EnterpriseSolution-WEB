@@ -1,5 +1,4 @@
-1) Create Atlas Cluster and connect to DB
-2) Create routes to access
+2) Create models and routes to access
 3) Create models for DB
 4) Work on frontend UI website login screen
 5) connect UI to backend for accessing user information

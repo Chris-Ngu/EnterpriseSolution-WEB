@@ -1,5 +1,3 @@
-2) Create models and routes to access
-3) Create models for DB
 4) Work on frontend UI website login screen
 5) connect UI to backend for accessing user information
 6) add access token for admins to access adminstration

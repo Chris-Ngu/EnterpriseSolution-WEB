@@ -1,6 +1,7 @@
+let User = require('../models/user.model');
+
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
-let User = require('../models/user.model');
 
 //POST
 router.route('/').post((req, res) => {
@@ -8,7 +9,8 @@ router.route('/').post((req, res) => {
     //changed from const to string since model doesn't wanna play nice
     password = req.body.password;
 
-    bcrypt.hash(password, 10, function(err,hash){
+    try { 
+        crypt.hash(password, 10, function(err,hash){
         password = hash;
         const newUser = new User({ username, password});
         if (err){
@@ -18,8 +20,11 @@ router.route('/').post((req, res) => {
         .then(() => res.json('New user added'))
         .catch(err => res.status(400).json('Error: ' + err));
     });
+        res.redirect('/login')
+    } catch {
+        res.redirect('/')
+    } 
 });
-
 
 router.route('/login').post((req, res) => {
     const user = User.find(user => user.username = req.body.user)

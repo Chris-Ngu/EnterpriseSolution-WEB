@@ -20,6 +20,22 @@ router.route('/').post((req, res) => {
     });
 });
 
+
+router.route('/login').post((req, res) => {
+    const user = User.find(user => user.username = req.body.user)
+
+    if (user == null) {
+        return res.status(400).send('No user exists')
+    } try {
+        if (bcrypt.compare(req.body.password, user.password)) {
+            res.send('Logged in')
+        } else{
+            res.send('Wrong password')
+        }
+    } catch {
+        res.status(500).send()
+    }
+})
 /*
 
 bcrypt.compare('somePassword', hash, function(err, res) {

@@ -8,7 +8,6 @@ router.route('/').post((req, res) => {
     const username = req.body.username;
     //changed from const to string since model doesn't wanna play nice
     password = req.body.password;
-
     try { 
         crypt.hash(password, 10, function(err,hash){
         password = hash;
@@ -60,18 +59,4 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-/*
-router.route('/:id').get((req, res) => {
-    User.findById(req.params.id)
-    .then(exercise => res.json(user))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
-
-//DELETE
-router.route('/:id').get((req, res) =>{
-    User.findByIdAndDelete(req.params.id)
-    .then(() => res.json('User deleted'))
-    .catch(err => json.status(400).json('Error: ' + err));
-});
-*/
 module.exports = router;

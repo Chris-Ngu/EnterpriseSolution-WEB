@@ -4,6 +4,8 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import './App.css';
 
 import Login from "./components/Login.component";
+import Register from "./components/Register.component";
+import Forgot from "./components/Forgot.component";
 
 function App() {
   return (
@@ -11,6 +13,8 @@ function App() {
       <div className="container">
         <br/>
         <Route path="/" exact component= { Login }/>
+        <Route path="/register" exact component = { Register }/>
+        <Route path="/forgot" exact component = { Forgot } />
       </div>
     </Router>
   )

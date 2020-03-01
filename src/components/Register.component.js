@@ -2,31 +2,34 @@ import React, { Component } from 'react';
 import { BrowserRouter as router, Route, link } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios';
+//import a registration checker here
+//Redirect upon suc
 
-export default class Login extends Component {
-
-    render() {
+export default class Register extends Component {
+    render(){
         return (
-            <Form className="login-form">
+            <Form className="register-form">
                 <h1>
-                    <center><span className="font-weight-bold">Enterprise</span>Solution</center>
+                <center><span className="font-weight-bold">Registration</span>Form</center>
                 </h1>
-                <h2 className="text-center">Welcome</h2>
+                <h2 className="text-center">Please enter the required fields</h2>
                 <FormGroup>
-                    <label>Username</label>
+                    <label>Username*</label>
                     <Input type="text" placeholder="Username" />
                 </FormGroup>
                 <FormGroup>
-                    <label>Password</label>
+                    <label>Password*</label>
+                    <Input type="password" placeholder="Password" />
+                </FormGroup>
+                <FormGroup>
+                    <label>Confirm Password</label>
                     <Input type="password" placeholder="Password" />
                 </FormGroup>
                 <Button className="btn-lg btn-dark btn-block">
-                    Log in
+                    Submit
                 </Button>
                 <div className="text-center pt-3 mb-3">
-                    <a href="/register">Register</a>
-                    <span className="p-2">|</span>
-                    <a href="/forgot">Forgot Password</a>
+                    <a href="/">Back to Login screen</a>
                 </div>
             </Form>
         )

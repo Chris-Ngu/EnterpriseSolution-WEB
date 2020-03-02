@@ -18,6 +18,13 @@ const userSchema = new Schema({
         unique: false,
         trim: false,
         minLength: 3
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true,
+        minLength: 4
     }
 },{
     timestamps: true,

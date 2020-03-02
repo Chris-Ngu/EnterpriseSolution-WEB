@@ -3,14 +3,13 @@ const bcrypt = require('bcrypt');
 let User = require('../models/user.model');
 
 //POST
-router.route('/').post((req, res) => {
+router.route('/add').post((req, res) => {
     const username = req.body.username;
-    //changed from const to string since model doesn't wanna play nice
-    password = req.body.password;
+    const password = req.body.password;
+    const email = req.body.email;
 
     bcrypt.hash(password, 10, function(err,hash){
-        password = hash;
-        const newUser = new User({ username, password});
+        const newUser = new User({ username, password: hash, email});
         if (err){
             console.log(err);
         }

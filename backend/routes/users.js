@@ -2,6 +2,7 @@ const router = require('express').Router();
 const bcrypt = require('bcrypt');
 let User = require('../models/user.model');
 
+
 //POST
 router.route('/add').post((req, res) => {
     const username = req.body.username;

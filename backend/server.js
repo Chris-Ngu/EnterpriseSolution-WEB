@@ -15,7 +15,7 @@ mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true});
 const connection = mongoose.connection;
 connection.once('open', () => {
     console.log("MongoDB connection established");
-})
+});
 
 //routers
 //could use this in the create login first

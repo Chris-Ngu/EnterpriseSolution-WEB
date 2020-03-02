@@ -3,7 +3,6 @@ import { BrowserRouter as router, Route, link } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import Axios from 'axios';
 //import a registration checker here
-//Redirect upon suc
 
 export default class Register extends Component {
     constructor(props) {
@@ -54,7 +53,8 @@ export default class Register extends Component {
             password: '',
             email: ''
         });
-        //redirect here with message
+        //either redirect or post success 
+        window.location = '/';
     }
 
     render() {

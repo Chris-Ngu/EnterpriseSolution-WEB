@@ -14,6 +14,7 @@ Nothing so far, just setting up UI
 
 # WIP 
 * Login Screen: either center the login module or include more information about the company (Maybe include third party login)
+* Flash message warning to alert of missing/ incorrect fields (registration and login)
 
 # Photos
 ![image](https://user-images.githubusercontent.com/57853013/75618629-c3d37c00-5b36-11ea-80fd-13a6152c778c.png)

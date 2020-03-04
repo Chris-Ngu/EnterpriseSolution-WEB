@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as router, Route, link } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import axios from 'axios';
 import Axios from 'axios';
 
 export default class Login extends Component {
@@ -10,6 +9,7 @@ export default class Login extends Component {
 
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
             username: '',
@@ -36,15 +36,17 @@ export default class Login extends Component {
         };
 
         console.log(user);
-
-        Axios.post('.............', user) //Need get Route
+        /*
+        Axios.get('.............', user) //Need get Route
             .then(res => console.log(res.data));
+        */
 
         this.setState({
             username: '',
             password: ''
         });
-        //Redirect or place warning here for invalid login
+        window.location = '/home';
+        
     }
 
     render() {

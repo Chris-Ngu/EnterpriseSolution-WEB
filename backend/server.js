@@ -6,6 +6,8 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('passport-local');
 
+require('./passport')(passport)
+
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -16,7 +18,9 @@ app.use(session({
     secret: 'GenerateSecretHere',
     saveUninitialized: false,
     resave: false
-}))
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true});

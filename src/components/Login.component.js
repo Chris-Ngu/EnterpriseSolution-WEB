@@ -40,13 +40,13 @@ export default class Login extends Component {
         Axios.get('.............', user) //Need get Route
             .then(res => console.log(res.data));
         */
-
+        //Axios.get('http://localhost:5000/auth/login')
         this.setState({
             username: '',
             password: ''
         });
         window.location = '/home';
-        
+
     }
 
     render() {

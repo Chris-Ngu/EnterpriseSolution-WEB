@@ -36,17 +36,14 @@ export default class Login extends Component {
         };
 
         console.log(user);
-        /*
-        Axios.get('.............', user) //Need get Route
-            .then(res => console.log(res.data));
-        */
-        //Axios.get('http://localhost:5000/auth/login')
+        Axios.post('http://localhost:5000/admin/login', user)
+
         this.setState({
             username: '',
             password: ''
         });
-        window.location = '/home';
-
+        //window.location = '/home';
+        
     }
 
     render() {

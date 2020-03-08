@@ -45,7 +45,7 @@ export default class Register extends Component {
 
         console.log(user);
 
-        Axios.post('http://localhost:5000/auth/add', user)
+        Axios.post('http://localhost:5000/admin/add', user)
             .then(res => console.log(res.data));
 
         this.setState({

@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 let User = require('../models/user.model');
 
 
@@ -28,13 +29,17 @@ router.route('/login').post((req, res) => {
         if (record) {
             var valid = bcrypt.compare(req.body.password, User.password);
             if (valid) {
-                //generate JWT HERE
                 res.json('Correct password!');
+                const loggedUser = {name: req.body.username, password: req.body.username}
+                const accessToken = jwt.sign(loggedUser, process.env.ACCESS_TOKEN_SECRET)
+                return (res.json({ accessToken: accessToken }))
             } else {
                 res.json('Incorrect password');
+                return null;
             }
         } else {
-            res.json('User does not exist');
+            res.status(401).json('User does not exist');
+            return null;
         }
     });
 });

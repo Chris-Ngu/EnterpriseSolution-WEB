@@ -36,7 +36,7 @@ export default class Login extends Component {
         };
 
         console.log(user);
-        Axios.post('http://localhost:5000/admin/login', user)
+        const jwt = Axios.post('http://localhost:5000/admin/login', user)
 
         this.setState({
             username: '',

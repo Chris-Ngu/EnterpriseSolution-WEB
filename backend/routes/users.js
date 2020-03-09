@@ -25,31 +25,49 @@ router.route('/login').post((req, res) => {
     User.findOne({ username: req.body.username }, function (err, record) {
         if (err) {
             console.log('Error: ' + err);
+            return;
         }
         if (record) {
-            var valid = bcrypt.compare(req.body.password, User.password);
-            if (valid) {
-                res.json('Correct password!');
-                const loggedUser = {name: req.body.username, password: req.body.username}
-                const accessToken = jwt.sign(loggedUser, process.env.ACCESS_TOKEN_SECRET)
-                return (res.json({ accessToken: accessToken }))
-            } else {
-                res.json('Incorrect password');
-                return null;
-            }
+            bcrypt.compare(req.body.password, record.password, function (err, result) {
+                if (err) {
+                    console.log('Error: ' + err);
+                    return;
+                } else{
+                    if (result == true){
+                        console.log('Correct password!')
+                        const loggedUser = {name: record.username, password: req.body.password}
+                        const accessToken = jwt.sign(loggedUser, process.env.ACCESS_TOKEN_SECRET)
+                        res.json({ accessToken: accessToken })
+                    } else if (result == false){
+                        res.status(401).jsonjson('Incorrect Password')
+                        return;
+                    }
+                }
+            })
         } else {
             res.status(401).json('User does not exist');
-            return null;
+            return;
         }
     });
 });
 
-//GET
-router.route('/').get((req, res) => {
-    User.find()
-        .then(users => res.json(users))
-        .catch(err => res.status(400).json('Error: ' + err));
-});
 
+function authenticateToken(req, res, next){
+    const authHeader = req.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1]
+    if (token == null) return res.sendStatus(401)
+
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+        if (err) return res.sendStatus(403);
+        req.user = user;
+        next()
+    })
+}
+
+router.get('/', authenticateToken, (req, res) =>{
+    User.find()
+    .then(users => res.json(users))
+    .catch(err => res.status(400).json('Error: ' + err))
+});
 
 module.exports = router;

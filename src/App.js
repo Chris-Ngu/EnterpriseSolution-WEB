@@ -7,6 +7,7 @@ import Login from "./components/Login.component";
 import Register from "./components/Register.component";
 import Forgot from "./components/Forgot.component";
 import MainScreen from "./components/Main_Screen.component";
+import Authenticate from "./components/Authenticate.component";
 
 function App() {
   return (
@@ -16,7 +17,9 @@ function App() {
         <Route path="/" exact component= { Login }/>
         <Route path="/register" exact component = { Register }/>
         <Route path="/forgot" exact component = { Forgot } />
+        <Authenticate>
         <Route path="/home" exact component = { MainScreen } />
+        </Authenticate>
       </div>
     </Router>
   )

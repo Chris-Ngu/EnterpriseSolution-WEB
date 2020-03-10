@@ -37,7 +37,8 @@ router.route('/login').post((req, res) => {
                         console.log('Correct password!')
                         const loggedUser = {name: record.username, password: req.body.password}
                         const accessToken = jwt.sign(loggedUser, process.env.ACCESS_TOKEN_SECRET)
-                        res.json({ accessToken: accessToken })
+                        res.send(accessToken);
+                        return;
                     } else if (result == false){
                         res.status(401).jsonjson('Incorrect Password')
                         return;
@@ -50,7 +51,9 @@ router.route('/login').post((req, res) => {
         }
     });
 });
-
+router.get('/getUser', authenticateToken, (req, res) =>{
+    return res.send(req.user);
+})
 
 function authenticateToken(req, res, next){
     const authHeader = req.headers['authorization']

@@ -6,23 +6,23 @@ import axios from 'axios';
 //Change username to Email
 
 export default class Forgot extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-    
+
         this.state = {
             email: ''
         }
     }
 
-    onChangeEmail(e){
+    onChangeEmail(e) {
         this.setState({
             email: e.target.value
         });
     }
-    onSubmit(e){
+    onSubmit(e) {
         e.preventDefault();
         const user = {
             email: this.state.email
@@ -40,21 +40,20 @@ export default class Forgot extends Component {
 
     render() {
         return (
-            <Form className="forgot-form">
-                <form onSubmit= {this.onSubmit}>
+            <Form className="forgot-form" onSubmit={this.onSubmit}>
                 <h1>
                     <center><span className="font-weight-bold">Forgot</span>Password?</center>
                 </h1>
                 <h2 className="text-center">No worries!</h2>
                 <FormGroup>
                     <label>Email</label>
-                    <Input type="email" 
-                    placeholder="Email"
-                    required
-                    className="form-control"
-                    value={this.state.email}
-                    onChange={this.onChangeEmail}
-                     />
+                    <Input type="email"
+                        placeholder="Email"
+                        required
+                        className="form-control"
+                        value={this.state.email}
+                        onChange={this.onChangeEmail}
+                    />
                 </FormGroup>
                 <Button className="btn-lg btn-dark btn-block" type="submit">
                     Submit
@@ -62,7 +61,6 @@ export default class Forgot extends Component {
                 <div className="text-center pt-3 mb-3">
                     <a href="/">Back to Login screen</a>
                 </div>
-                </form>
             </Form>
         )
     }

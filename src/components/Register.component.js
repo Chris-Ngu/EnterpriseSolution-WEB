@@ -11,7 +11,7 @@ export default class Register extends Component {
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
-        this.onSubmit= this.onSubmit.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
             username: '',
@@ -59,48 +59,46 @@ export default class Register extends Component {
 
     render() {
         return (
-            <Form className="register-form">
-                <form onSubmit={this.onSubmit}>
-                    <h1>
-                        <center><span className="font-weight-bold">Registration</span>Form</center>
-                    </h1>
-                    <h2 className="text-center">Please enter the required fields</h2>
-                    <FormGroup>
-                        <label>Username*</label>
-                        <Input type="text"
-                            placeholder="Username"
-                            required
-                            className="form-control"
-                            value={this.state.username}
-                            onChange={this.onChangeUsername}
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <label>Email*</label>
-                        <Input type="email"
-                            placeholder="email"
-                            required
-                            className="form-control"
-                            value={this.state.email}
-                            onChange={this.onChangeEmail}
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <label>Password*</label>
-                        <Input type="password"
-                            placeholder="Password"
-                            className="form-control"
-                            value={this.state.password}
-                            onChange={this.onChangePassword}
-                        />
-                    </FormGroup>
-                    <Button className="btn-lg btn-dark btn-block" type="submit">
-                        Submit
+            <Form className="register-form" onSubmit={this.onSubmit}>
+                <h1>
+                    <center><span className="font-weight-bold">Registration</span>Form</center>
+                </h1>
+                <h2 className="text-center">Please enter the required fields</h2>
+                <FormGroup>
+                    <label>Username*</label>
+                    <Input type="text"
+                        placeholder="Username"
+                        required
+                        className="form-control"
+                        value={this.state.username}
+                        onChange={this.onChangeUsername}
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <label>Email*</label>
+                    <Input type="email"
+                        placeholder="email"
+                        required
+                        className="form-control"
+                        value={this.state.email}
+                        onChange={this.onChangeEmail}
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <label>Password*</label>
+                    <Input type="password"
+                        placeholder="Password"
+                        className="form-control"
+                        value={this.state.password}
+                        onChange={this.onChangePassword}
+                    />
+                </FormGroup>
+                <Button className="btn-lg btn-dark btn-block" type="submit">
+                    Submit
                     </Button>
-                    <div className="text-center pt-3 mb-3">
-                        <a href="/">Back to Login screen</a>
-                    </div>
-                </form>
+                <div className="text-center pt-3 mb-3">
+                    <a href="/">Back to Login screen</a>
+                </div>
             </Form>
         )
     }

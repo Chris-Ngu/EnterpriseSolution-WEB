@@ -36,52 +36,55 @@ export default class Login extends Component {
         };
 
         console.log(user);
-        Axios.post('http://localhost:5000/admin/login', user);
+        Axios.post('http://localhost:5000/admin/login', user)
+        .then(res => {
+            localStorage.setItem('JWT', res.data);
+            this.props.history.push('/home');
+        }); 
+        
         this.setState({
             username: '',
             password: ''
         });
         //
-       
+
     }
 
     render() {
         return (
-            <Form className="login-form">
-                <form onSubmit={this.onSubmit}>
-                    <h1>
-                        <center><span className="font-weight-bold">Enterprise</span>Solution</center>
-                    </h1>
-                    <h2 className="text-center">Welcome</h2>
-                    <FormGroup>
-                        <label>Username</label>
-                        <Input type="text"
-                            placeholder="Username"
-                            required
-                            className="form-control"
-                            value={this.state.username}
-                            onChange={this.onChangeUsername}
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <label>Password</label>
-                        <Input type="password"
-                            placeholder="Password"
-                            required
-                            className="form-control"
-                            value={this.state.password}
-                            onChange={this.onChangePassword}
-                        />
-                    </FormGroup>
-                    <Button className="btn-lg btn-dark btn-block" type="submit">
-                        Log in
+            <Form className="login-form" onSubmit={this.onSubmit}>
+                <h1>
+                    <center><span className="font-weight-bold">Enterprise</span>Solution</center>
+                </h1>
+                <h2 className="text-center">Welcome</h2>
+                <FormGroup>
+                    <label>Username</label>
+                    <Input type="text"
+                        placeholder="Username"
+                        required
+                        className="form-control"
+                        value={this.state.username}
+                        onChange={this.onChangeUsername}
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <label>Password</label>
+                    <Input type="password"
+                        placeholder="Password"
+                        required
+                        className="form-control"
+                        value={this.state.password}
+                        onChange={this.onChangePassword}
+                    />
+                </FormGroup>
+                <Button className="btn-lg btn-dark btn-block" type="submit">
+                    Log in
                     </Button>
-                    <div className="text-center pt-3 mb-3">
-                        <a href="/register">Register</a>
-                        <span className="p-2">|</span>
-                        <a href="/forgot">Forgot Password</a>
-                    </div>
-                </form>
+                <div className="text-center pt-3 mb-3">
+                    <a href="/register">Register</a>
+                    <span className="p-2">|</span>
+                    <a href="/forgot">Forgot Password</a>
+                </div>
             </Form>
         )
     }

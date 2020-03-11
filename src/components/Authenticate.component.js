@@ -34,7 +34,7 @@ class Authenticate extends Component {
     render() {
         if(this.state.user === undefined){
             return (
-                <div><h1>Loading...</h1></div>
+                <div><h1></h1></div>
             );
         }
 

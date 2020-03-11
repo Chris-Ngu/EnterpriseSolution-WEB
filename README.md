@@ -13,8 +13,10 @@ The full stack implementation of [EnterpriseSolution](https://github.com/Chris-N
 Nothing so far, just setting up UI
 
 # WIP 
-* Login Screen: either center the login module or include more information about the company (Maybe include third party login)
+* Login Screen: Double check the JWT integration, I can get passed by using the specific url(JWT Being deleted on some routes/ checks not working)
 * Flash message warning to alert of missing/ incorrect fields (registration and login)
+* Redesign the UI/ navbar integration to the left hand side for fluidity
+* Form submission for new project in /Project
 
 # Photos
 ![image](https://user-images.githubusercontent.com/57853013/75618629-c3d37c00-5b36-11ea-80fd-13a6152c778c.png)

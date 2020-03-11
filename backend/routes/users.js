@@ -40,7 +40,7 @@ router.route('/login').post((req, res) => {
                         res.send(accessToken);
                         return;
                     } else if (result == false){
-                        res.status(401).jsonjson('Incorrect Password')
+                        res.status(401).json('Incorrect Password')
                         return;
                     }
                 }

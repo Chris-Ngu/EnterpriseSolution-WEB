@@ -18,9 +18,11 @@ export default class Navbar extends Component {
                         <li className="navbar-item">
                             <Link to="/settings" className="nav-link">Settings</Link>
                         </li>
-                        <li className="navbar-item">
-                            <Link to="/Logout" className="nav-link">Logout</Link>
-                        </li>
+                        <div className="pull-right">
+                            <li className="navbar-item" >
+                                <Link to="/Logout" className="nav-link">Logout</Link>
+                            </li>
+                        </div>
                     </ul>
                 </div>
             </nav>
@@ -28,18 +30,18 @@ export default class Navbar extends Component {
     }
 }
             /*
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" >
-                <Navbar.Brand href="/home">React-Bootstrap</Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="mr-auto">
-                        <Nav.Link href="/Projects">Projects</Nav.Link>
-                        <Nav.Link href="/messaging">Messaging<badge className="badge">999</badge></Nav.Link>
-                        <Nav.Link href="/About">About</Nav.Link>
-                    </Nav>
-                    <Nav pullRight>
-                        <NavItem eventKey={1} href="/settings">Settings</NavItem>
-                        <NavItem eventKey={1} href="/Logout">Logout</NavItem>
-                    </Nav>
-                </Navbar.Collapse>
-            </Navbar> */
+<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" >
+    <Navbar.Brand href="/home">React-Bootstrap</Navbar.Brand>
+    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+    <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="mr-auto">
+            <Nav.Link href="/Projects">Projects</Nav.Link>
+            <Nav.Link href="/messaging">Messaging<badge className="badge">999</badge></Nav.Link>
+            <Nav.Link href="/About">About</Nav.Link>
+        </Nav>
+        <Nav pullRight>
+            <NavItem eventKey={1} href="/settings">Settings</NavItem>
+            <NavItem eventKey={1} href="/Logout">Logout</NavItem>
+        </Nav>
+    </Navbar.Collapse>
+</Navbar> */

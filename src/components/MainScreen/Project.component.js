@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Input } from 'reactstrap';
-import { ButtonGroup, FormGroup } from 'react-bootstrap';
+import { Button } from 'reactstrap';
+import { ButtonGroup } from 'react-bootstrap';
 
 import Box from './Project.box';
 

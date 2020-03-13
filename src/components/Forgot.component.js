@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import axios from 'axios';
+import { Button, Form, FormGroup, Input } from 'reactstrap';
+//import axios from 'axios';
 //import some application to send reset
 //Check input and show message "Sent email if account exists"
 //Change username to Email

@@ -3,6 +3,7 @@ import { Input } from 'reactstrap';
 import { FormGroup, Form } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import Axios from 'axios';
 
 export default class Box extends Component {
     constructor(props) {
@@ -10,6 +11,9 @@ export default class Box extends Component {
 
         this.onChangeProjName = this.onChangeProjName.bind(this);
         this.onChangeDescription = this.onChangeDescription.bind(this);
+        this.onChangeMembers = this.onChangeMembers.bind(this);
+        this.onChangeStartDate = this.onChangeStartDate.bind(this);
+        this.onChangeFinishDate = this.onChangeFinishDate.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
@@ -49,12 +53,27 @@ export default class Box extends Component {
     onSubmit(e) {
         e.preventDefault();
         const proj = {
-
+            projectname: this.state.projectname,
+            description: this.state.description,
+            members: this.state.members,
+            startDate: this.state.startDate,
+            finishDate: this.state.finishDate
         }
+        console.log(proj);
+
+        Axios.post('', proj)
+        .then(res => console.log(res.data))
+        this.state = {
+            projectname: '',
+            description: '',
+            members: '',
+            startDate: new Date(),
+            finishDate: new Date()
+        }
+        //after fixing the popup form, maybe hide this section or use flash for a message
     }
 
     render() {
-        const { selectedItems, options } = this.state;
         return (
             <Form className="Project-form" onSubmit={this.onSubmit}>
                 <FormGroup>

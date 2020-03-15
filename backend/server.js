@@ -21,6 +21,8 @@ connection.once('open', () => {
 //could use this in the create login first
 const adminRouter = require('./routes/users');
 app.use('/admin', adminRouter)
+const projectRouter = require('./routes/project');
+app.use('/project', projectRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${ port }`);

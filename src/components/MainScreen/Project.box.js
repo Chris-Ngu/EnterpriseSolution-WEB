@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input } from 'reactstrap';
+import { Input, Button } from 'reactstrap';
 import { FormGroup, Form } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
@@ -17,17 +17,18 @@ export default class Box extends Component {
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            projectname: '',
+            projName: '',
             description: '',
             members: '',
-            startDate: new Date(),
-            finishDate: new Date()
+            startdate: new Date(),
+            finishdate: new Date()
         }
+        
     }
 
     onChangeProjName(e) {
         this.setState({
-            projectname: e.target.value
+            projName: e.target.value
         });
     }
     onChangeDescription(e) {
@@ -48,28 +49,30 @@ export default class Box extends Component {
     onChangeFinishDate(date) {
         this.setState({
             finishDate: date
-        });
+        })
     }
     onSubmit(e) {
         e.preventDefault();
         const proj = {
-            projectname: this.state.projectname,
+            projName: this.state.projName,
             description: this.state.description,
             members: this.state.members,
-            startDate: this.state.startDate,
-            finishDate: this.state.finishDate
+            startdate: this.state.startDate,
+            finishdate: this.state.finishDate
         }
         console.log(proj);
 
-        Axios.post('', proj)
-        .then(res => console.log(res.data))
-        this.state = {
-            projectname: '',
+        Axios.post('http://localhost:5000/project/add', proj)
+            .then(res => console.log(res.data))
+            .catch((error) => console.log(error.response.request._response))
+
+        this.setState({
+            projName: '',
             description: '',
             members: '',
             startDate: new Date(),
             finishDate: new Date()
-        }
+        });
         //after fixing the popup form, maybe hide this section or use flash for a message
     }
 
@@ -82,7 +85,7 @@ export default class Box extends Component {
                         placeholder="Title"
                         required
                         className="form-control"
-                        value={this.state.projectname}
+                        value={this.state.projName}
                         onChange={this.onChangeProjName}
                     />
                 </FormGroup>
@@ -120,6 +123,9 @@ export default class Box extends Component {
                         onChange={this.onChangeFinishDate}
                     />
                 </FormGroup>
+                <Button className="btn-lg btn-dark btn-block" type="submit">
+                    Create Project
+                </Button>
             </Form>
         );
     }

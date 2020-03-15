@@ -19,7 +19,7 @@ const projectSchema = new Schema({
     },
     startdate: {
         type: Date,
-        required: true
+        required: false
     },
     finishdate: {
         type: Date,

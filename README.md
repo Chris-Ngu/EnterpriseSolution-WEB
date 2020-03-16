@@ -16,7 +16,7 @@ Nothing so far, just setting up UI
 * Login Screen: Double check the JWT integration, I can get passed by using the specific url(JWT Being deleted on some routes/ checks not working)
 * Flash message warning to alert of missing/ incorrect fields (registration and login)
 * Redesign the UI/ navbar integration to the left hand side for fluidity
-* Form submission for new project in /Project
+* Redesign the UI for projects (including substring of date)
 
 # Photos
 ![image](https://user-images.githubusercontent.com/57853013/75618629-c3d37c00-5b36-11ea-80fd-13a6152c778c.png)

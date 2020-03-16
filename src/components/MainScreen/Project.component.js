@@ -10,19 +10,49 @@ export default class Project extends Component {
         super(props);
 
         this.toggle = this.toggle.bind(this);
+        this.displayProjects = this.displayProjects.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
+        this.getProjects = this.getProjects.bind(this);
 
         this.state = {
             show: false,
+            projects: []
         }
 
     }
+    componentDidMount = () => {
+        this.getProjects();
+    }
+
+    displayProjects = (projects) => {
+        if (!projects.length) return null;
+        return projects.map((project, index) => (
+            
+            <div key={index}>
+                <h3>{project.projName}</h3>
+                <h>Description:</h>
+                <p>{project.description}</p>
+                <h>Participating Members:</h>
+                <p>{project.members}</p>
+                <h>Start date</h>
+                <p>{project.startdate}</p>
+                <h>Finish date</h>
+                <p>{project.finishdate}</p>
+            </div>
+        ))
+    }
+
     getProjects = () => {
-        axios.get('http://localhost:5000/')
-            .then(() => {
+        axios.get('http://localhost:5000/project')
+            .then((response) => {
+                const data = response.data;
+                this.setState({
+                    projects: data
+                })
                 console.log('Getting data')
             })
             .catch(() => {
-                ("Error")
+                alert('Error collecting project data')
             })
     }
 
@@ -33,10 +63,15 @@ export default class Project extends Component {
 
     render() {
         return (
+            <div>
+                <h2>Current Projects</h2>
+                <div className="Projects">
+                    {this.displayProjects(this.state.projects)}
+                </div>
 
-
-            <div className="SubmitRequest">
-                <Box />
+                <div className="SubmitRequest">
+                    <Box />
+                </div>
             </div>
         );
     }

@@ -18,7 +18,6 @@ export default class Project extends Component {
             show: false,
             projects: []
         }
-
     }
     componentDidMount = () => {
         this.getProjects();

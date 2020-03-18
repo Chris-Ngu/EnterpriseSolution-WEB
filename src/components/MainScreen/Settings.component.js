@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 const dotenv = require("dotenv").config();
 const jwt = require('jsonwebtoken');
 
@@ -10,48 +10,56 @@ Color preferences of website (CSS Choices)
 =====change password option
 =====change profile picture
 =====Date registered
-=====Name
+=====Projects queued (Count)
 Request queue(Class wrapper)
     -Requested user
     -date
     -Ticker number
 Show profile picture
 */
-export default class Settings extends Component{
-    constructor(props){
+export default class Settings extends Component {
+    constructor(props) {
         super(props);
 
         this.componentDidMount = this.componentDidMount.bind(this);
+        this.getToken = this.getToken.bind(this);
 
         this.state = {
-            object: null
+            user: '',
+            dateRegistered: ''
         }
     }
+
     componentDidMount = () => {
-        this.getToken();
+        this.state.user = this.getToken();
+        this.state.dateRegistered = this.getAccountInformation(this.state.user);
     }
-    getToken = () =>{
+    getToken = () => {
         const userToken = localStorage.getItem("JWT");
         if (!userToken) return alert('No web token found');
-
 
         //
         //
         //
         //
         //remove secret key
-        jwt.verify(userToken, "PPwU!!!SH$F%m9dVn!BAS", function (err, decoded){
-            if (err){
-                console.log('ERROR: ' + err)
-                return;
-            }
-            this.state = decoded;
-        }); 
+        const decoded = jwt.verify(userToken, "PPwU!!!SH$F%m9dVn!BAS");
+        return (decoded.name)
+    }
+    getAccountInformation(username){
+        Axios.get('http://localhost:5000/'+username)
+        .then(
+            res => this.setState({dateRegistered: res.data.createdAt})
+        );
     }
 
-    render(){
-        return(
-            <h1>{SettingTest}</h1>
+    render() {
+        return (
+            <div>
+                <h1>User Settings</h1>
+                <b>{this.state.user}</b>
+                <b>Registration date: {this.state.dateRegistered}</b>
+            </div>
         );
     }
 }

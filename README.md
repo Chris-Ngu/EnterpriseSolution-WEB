@@ -17,7 +17,7 @@ Nothing so far, just setting up UI
 * Flash message warning to alert of missing/ incorrect fields (registration and login)
 * Redesign the UI/ navbar integration to the left hand side for fluidity
 * Redesign the UI for projects (including substring of date)
-* Fix pages not working (Linked to navbar integration)
+* Fix pages not working (Linked to navbar integration), Settings need to be double clicked to pop up
 * JWT Timer and refresh token
 
 # Photos

@@ -6,6 +6,8 @@ export default class Message extends Component {
     render() {
         return (
             <body>
+                <script defer src="http://localhost:6000/socket.io/socket.io.js"></script>
+                <script defer src="/backend/messageScript.js"></script>
                 <div id="message-container">
                     <Form id="send-container">
                         <Input type="text" id="message-input" />

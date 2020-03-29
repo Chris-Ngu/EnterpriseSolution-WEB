@@ -4,6 +4,7 @@ import { ButtonGroup } from 'react-bootstrap';
 import axios from 'axios';
 
 import Box from './Project.box';
+import Navbar from '../Navbar.component';
 
 export default class Project extends Component {
     constructor(props) {
@@ -26,7 +27,7 @@ export default class Project extends Component {
     displayProjects = (projects) => {
         if (!projects.length) return null;
         return projects.map((project, index) => (
-            
+
             <div key={index}>
                 <h3>{project.projName}</h3>
                 <h>Description:</h>
@@ -63,6 +64,7 @@ export default class Project extends Component {
     render() {
         return (
             <div>
+                <Navbar />
                 <h2>Current Projects</h2>
                 <div className="Projects">
                     {this.displayProjects(this.state.projects)}

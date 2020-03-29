@@ -1,3 +1,4 @@
+import Navbar from '../Navbar.component';
 import React, { Component } from "react";
 const dotenv = require("dotenv").config();
 const jwt = require('jsonwebtoken');
@@ -18,6 +19,7 @@ Request queue(Class wrapper)
     -Ticker number
 Show profile picture
 */
+
 export default class Settings extends Component {
     constructor(props) {
         super(props);
@@ -47,16 +49,17 @@ export default class Settings extends Component {
         const decoded = jwt.verify(userToken, "PPwU!!!SH$F%m9dVn!BAS");
         return (decoded.name)
     }
-    getAccountInformation(username){
-        Axios.get('http://localhost:5000/'+username)
-        .then(
-            res => this.setState({dateRegistered: res.data.createdAt})
-        );
+    getAccountInformation(username) {
+        Axios.get('http://localhost:5000/' + username)
+            .then(
+                res => this.setState({ dateRegistered: res.data.createdAt })
+            );
     }
 
     render() {
         return (
             <div>
+                <Navbar />
                 <h1>User Settings</h1>
                 <b>{this.state.user}</b>
                 <b>Registration date: {this.state.dateRegistered}</b>

@@ -15,13 +15,13 @@ app.use(express.json());
 io.on('connection', socket => {
     console.log('New User Joined');
     socket.emit('chat-message', 'Hello World');
-    socket.on('send-chat-message', message =>{
+    socket.on('send-chat-message', message => {
         socket.broadcast.emit('chat-message', message)
     })
 })
 
 const uri = process.env.ATLAS_URI;
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true});
+mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true });
 const connection = mongoose.connection;
 connection.once('open', () => {
     console.log("MongoDB connection established");
@@ -35,5 +35,5 @@ const projectRouter = require('./routes/project');
 app.use('/project', projectRouter);
 
 app.listen(port, () => {
-    console.log(`Server is running on port: ${ port }`);
+    console.log(`Server is running on port: ${port}`);
 });

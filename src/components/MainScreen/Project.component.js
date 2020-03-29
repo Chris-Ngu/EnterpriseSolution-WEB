@@ -38,6 +38,8 @@ export default class Project extends Component {
                 <p>{project.startdate}</p>
                 <h>Finish date</h>
                 <p>{project.finishdate}</p>
+                <h>Created User</h>
+                <p>{project.createduser}</p>
             </div>
         ))
     }

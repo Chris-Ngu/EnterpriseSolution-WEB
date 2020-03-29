@@ -24,6 +24,10 @@ const projectSchema = new Schema({
     finishdate: {
         type: Date,
         required: false
+    },
+    createduser: {
+        type: String,
+        required: true
     }
 },{
     timestamps: true,

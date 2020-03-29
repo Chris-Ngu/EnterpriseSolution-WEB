@@ -14,17 +14,19 @@ router.route('/add').post((req, res) =>{
     const members = req.body.members;
     const startdate = req.body.startdate;
     const finishdate = req.body.finishdate;
+    const createduser = req.body.createduser;
 
     const newProject = new Project({
         projName,
         description,
         members,
         startdate,
-        finishdate
-    })
+        finishdate,
+        createduser
+    });
     newProject.save()
     .then(()=> res.json('New Project added'))
-    .catch(err => res.status(400).json('Error: ' + err))
-})
+    .catch(err => res.status(400).json('Error: ' + err));
+});
 
 module.exports = router;

@@ -14,11 +14,14 @@ Nothing so far, just setting up UI
 
 # WIP 
 * Login Screen: Double check the JWT integration, I can get passed by using the specific url(JWT Being deleted on some routes/ checks not working)
+
 * Project screen: Input creating user, add count and add who created; recreate UI with date looking a little nicer
 * Flash message warning to alert of missing/ incorrect fields (registration and login)
 * Redesign the UI/ navbar integration to the left hand side for fluidity
-* Fix pages not working (Linked to navbar integration), Settings need to be double clicked to pop up
+
 * JWT Timer and refresh token
+* Move all jwt needed requests into one file
+* REMOVE SECRET KEY/ CREATE NEW 
 
 # Photos
 ![image](https://user-images.githubusercontent.com/57853013/75618629-c3d37c00-5b36-11ea-80fd-13a6152c778c.png)

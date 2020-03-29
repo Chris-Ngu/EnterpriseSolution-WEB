@@ -5,6 +5,8 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import Axios from 'axios';
 
+const jwt = require('jsonwebtoken');
+
 export default class Box extends Component {
     constructor(props) {
         super(props);
@@ -14,6 +16,7 @@ export default class Box extends Component {
         this.onChangeMembers = this.onChangeMembers.bind(this);
         this.onChangeStartDate = this.onChangeStartDate.bind(this);
         this.onChangeFinishDate = this.onChangeFinishDate.bind(this);
+        this.getUser = this.getUser.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
@@ -21,9 +24,24 @@ export default class Box extends Component {
             description: '',
             members: '',
             startdate: new Date(),
-            finishdate: new Date()
+            finishdate: new Date(),
+            createduser: ''
         }
         
+    }
+    getUser(){
+        //Get username portion of JWT
+        const userToken = localStorage.getItem("JWT");
+        if (!userToken) return alert('No web token found');
+
+        //
+        //
+        //
+        //
+        //
+        //remove secret key
+        const decoded = jwt.verify(userToken, "PPwU!!!SH$F%m9dVn!BAS");
+        this.state.createduser = decoded.name;
     }
 
     onChangeProjName(e) {
@@ -53,13 +71,15 @@ export default class Box extends Component {
     }
     onSubmit(e) {
         e.preventDefault();
+        this.getUser();
         const proj = {
             projName: this.state.projName,
             description: this.state.description,
             members: this.state.members,
             startdate: this.state.startDate,
-            finishdate: this.state.finishDate
-        }
+            finishdate: this.state.finishDate,
+            createduser: this.state.createduser
+        };
         console.log(proj);
 
         Axios.post('http://localhost:5000/project/add', proj)
@@ -71,7 +91,8 @@ export default class Box extends Component {
             description: '',
             members: '',
             startDate: new Date(),
-            finishDate: new Date()
+            finishDate: new Date(),
+            createduser: ''
         });
         //after fixing the popup form, maybe hide this section or use flash for a message
     }

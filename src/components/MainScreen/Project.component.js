@@ -30,6 +30,8 @@ export default class Project extends Component {
 
             <div key={index}>
                 <h3>{project.projName}</h3>
+                <h>Created User</h>
+                <p>{project.createduser}</p>
                 <h>Description:</h>
                 <p>{project.description}</p>
                 <h>Participating Members:</h>
@@ -38,8 +40,7 @@ export default class Project extends Component {
                 <p>{project.startdate}</p>
                 <h>Finish date</h>
                 <p>{project.finishdate}</p>
-                <h>Created User</h>
-                <p>{project.createduser}</p>
+
             </div>
         ))
     }

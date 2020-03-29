@@ -10,7 +10,7 @@ The full stack implementation of [EnterpriseSolution](https://github.com/Chris-N
 * NodeJS
 
 # Working features
-Nothing so far, just setting up UI
+* Login screen registration/ logging in with JWT integration
 
 # WIP 
 * Login Screen: Double check the JWT integration, I can get passed by using the specific url(JWT Being deleted on some routes/ checks not working)
@@ -22,6 +22,7 @@ Nothing so far, just setting up UI
 * JWT Timer and refresh token
 * Move all jwt needed requests into one file
 * REMOVE SECRET KEY/ CREATE NEW 
+* Convert console.log error logging to res.json
 
 # Photos
 ![image](https://user-images.githubusercontent.com/57853013/75618629-c3d37c00-5b36-11ea-80fd-13a6152c778c.png)

@@ -5,14 +5,21 @@ const jwt = require('jsonwebtoken');
 const Axios = require('axios');
 
 /*
+User name
+Picture
+email
+password (censored out)
+date registered
+Project count
+
+
 Admin access to mongodb
 messager settings/ preferences (do not disturb, etc...)
 Color preferences of website (CSS Choices)
 =====Change email option
 =====change password option
 =====change profile picture
-=====Date registered
-=====Projects queued (Count)
+
 Request queue(Class wrapper)
     -Requested user
     -date
@@ -50,10 +57,9 @@ export default class Settings extends Component {
         return (decoded.name)
     }
     getAccountInformation(username) {
-        Axios.get('http://localhost:5000/' + username)
-            .then(
-                res => this.setState({ dateRegistered: res.data.createdAt })
-            );
+        const userInformation = Axios.get('http://localhost:5000/admin/information')
+        .then(res => console.log(res.data))
+        .catch((error) => console.log(error))
     }
 
     render() {

@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 let User = require('../models/user.model');
 
 
-//POST
+//Registration, adding new user
 router.route('/add').post((req, res) => {
     const username = req.body.username;
     const password = req.body.password;
@@ -21,6 +21,7 @@ router.route('/add').post((req, res) => {
     });
 });
 
+//logging in and checking JWT
 router.route('/login').post((req, res) => {
     User.findOne({ username: req.body.username }, function (err, record) {
         if (err) {
@@ -66,15 +67,29 @@ function authenticateToken(req, res, next){
     })
 }
 
+//Adding project count to person who created it
+router.route('/projectadd').post((req, res) => {
+    user.findOneAndUpdate({username: req.body.name}, {$inc: { createdprojects : 1 } }, { new: true})
+    .then((data) => {
+        if (data === null){
+            console.log('User not found');
+        }
+        console.log('user updated')
+    })
+})
+
 router.get('/', authenticateToken, (req, res) =>{
     User.find()
     .then(users => res.json(users))
     .catch(err => res.status(400).json('Error: ' + err))
 });
+
+//marked for deletion, not sure if I was even using this
+/*
 router.route('/:id').get((req, res) => {
     User.findById(req.params.id)
     .then(user => res.json(user))
     .catch(err => res.status(400).json('Error: ' + err));
 })
-
+*/
 module.exports = router;

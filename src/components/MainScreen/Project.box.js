@@ -41,6 +41,12 @@ export default class Box extends Component {
         //
         //remove secret key
         const decoded = jwt.verify(userToken, "PPwU!!!SH$F%m9dVn!BAS");
+
+        //update project count for user
+        Axios.post('http://localhost:5000/admin/projectadd', decoded)
+        .then(res => console.log(res.data))
+        .catch((error) => console.log(error.response.request._response))
+        
         this.state.createduser = decoded.name;
     }
 

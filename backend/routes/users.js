@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 let User = require('../models/user.model');
 
-
 //Registration, adding new user
 router.route('/add').post((req, res) => {
     const username = req.body.username;
@@ -33,13 +32,13 @@ router.route('/login').post((req, res) => {
                 if (err) {
                     console.log('Error: ' + err);
                     return;
-                } else{
-                    if (result == true){
+                } else {
+                    if (result == true) {
                         console.log('Correct password!')
-                        const loggedUser = {name: record.username, password: req.body.password}
+                        const loggedUser = { name: record.username, password: req.body.password }
                         const accessToken = jwt.sign(loggedUser, process.env.ACCESS_TOKEN_SECRET)
                         res.status(200).send(accessToken);
-                    } else if (result == false){
+                    } else if (result == false) {
                         res.status(401).json('Incorrect Password')
                         return;
                     }
@@ -51,11 +50,12 @@ router.route('/login').post((req, res) => {
         }
     });
 });
-router.get('/getUser', authenticateToken, (req, res) =>{
+router.get('/getUser', authenticateToken, (req, res) => {
     return res.send(req.user);
 })
 
-function authenticateToken(req, res, next){
+//Authentication middleware
+function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization']
     const token = authHeader && authHeader.split(' ')[1]
     if (token == null) return res.sendStatus(401)
@@ -67,29 +67,35 @@ function authenticateToken(req, res, next){
     })
 }
 
-//Adding project count to person who created it
-router.route('/projectadd').post((req, res) => {
-    user.findOneAndUpdate({username: req.body.name}, {$inc: { createdprojects : 1 } }, { new: true})
-    .then((data) => {
-        if (data === null){
-            console.log('User not found');
-        }
-        console.log('user updated')
-    })
-})
-
-router.get('/', authenticateToken, (req, res) =>{
+//login with authentication middleware
+router.get('/', authenticateToken, (req, res) => {
     User.find()
-    .then(users => res.json(users))
-    .catch(err => res.status(400).json('Error: ' + err))
+        .then(users => res.json(users))
+        .catch(err => res.status(400).json('Error: ' + err))
 });
 
-//marked for deletion, not sure if I was even using this
-/*
-router.route('/:id').get((req, res) => {
-    User.findById(req.params.id)
-    .then(user => res.json(user))
-    .catch(err => res.status(400).json('Error: ' + err));
+//Adding project count to person who created it
+router.route('/projectadd').post((req, res) => {
+    User.findOneAndUpdate({ username: req.body.name }, { $inc: { createdprojects: 1 } }, { new: true })
+        .then((data) => {
+            if (data === null) {
+                console.log('User not found');
+            }
+            console.log('user updated')
+        })
 })
-*/
+
+//Get all of user information
+router.route('/information').get((req, res) => {
+    console.log(req.body)
+    User.findOne({ username: "chrisnguyen" })
+        .then(function (user) {
+            return res.json(user)
+        })
+        .catch(function (err) {
+            console.log(err);
+        })
+
+})
+
 module.exports = router;

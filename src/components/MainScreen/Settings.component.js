@@ -5,13 +5,12 @@ const jwt = require('jsonwebtoken');
 const Axios = require('axios');
 
 /*
-User name
 Picture
-email
-password (censored out)
+User name -
+email - 
+password (censored out) - 
 date registered
 Project count
-
 
 Admin access to mongodb
 messager settings/ preferences (do not disturb, etc...)
@@ -35,16 +34,17 @@ export default class Settings extends Component {
         this.getToken = this.getToken.bind(this);
 
         this.state = {
-            user: '',
+            name: '',
+            password: '*****',
             dateRegistered: ''
         }
     }
 
     componentDidMount = () => {
-        this.state.user = this.getToken();
-        this.state.dateRegistered = this.getAccountInformation(this.state.user);
+        this.getToken();
     }
-    getToken = () => {
+    getToken() {
+
         const userToken = localStorage.getItem("JWT");
         if (!userToken) return alert('No web token found');
 
@@ -54,12 +54,18 @@ export default class Settings extends Component {
         //
         //remove secret key
         const decoded = jwt.verify(userToken, "PPwU!!!SH$F%m9dVn!BAS");
-        return (decoded.name)
-    }
-    getAccountInformation(username) {
-        const userInformation = Axios.get('http://localhost:5000/admin/information')
-        .then(res => console.log(res.data))
-        .catch((error) => console.log(error))
+        this.setState({
+            name: decoded.name
+        });
+        
+        var foundUser = null;
+        //double check decoded, nothing is being passed into this path
+        //Check out why foundUser is never being assigned the returned value
+        Axios.get('http://localhost:5000/admin/information', decoded)
+            .then(function(user){
+                foundUser = user;
+            });
+
     }
 
     render() {
@@ -67,7 +73,10 @@ export default class Settings extends Component {
             <div>
                 <Navbar />
                 <h1>User Settings</h1>
-                <b>{this.state.user}</b>
+                <b>Current user: {this.state.name}</b>
+                <br/>
+                <b>Password: {this.state.password}</b>
+                <br/>
                 <b>Registration date: {this.state.dateRegistered}</b>
             </div>
         );

@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 mongoose.set('useFindAndModify', false);
 const Schema = mongoose.Schema;
 
-//Implement some hashing function to map into mongodb password
 //add timestamp for last login
 const userSchema = new Schema({
     username: {

@@ -59,11 +59,14 @@ export default class Settings extends Component {
         });
         
         var foundUser = null;
-        //double check decoded, nothing is being passed into this path
-        //Check out why foundUser is never being assigned the returned value
-        Axios.get('http://localhost:5000/admin/information', decoded)
+        //double check not to return hash value
+        Axios.post('http://localhost:5000/admin/information', decoded)
             .then(function(user){
-                foundUser = user;
+                console.log(user.data)
+                //
+                //
+                // IF ADDED TO STATES, REMOVE LINE 61
+                //FIX THIS HERE (ASSIGN STATES OR ADD CONSTANTS)
             });
 
     }

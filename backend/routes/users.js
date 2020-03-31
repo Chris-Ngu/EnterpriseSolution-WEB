@@ -86,9 +86,9 @@ router.route('/projectadd').post((req, res) => {
 })
 
 //Get all of user information
-router.route('/information').get((req, res) => {
-    console.log(req.body)
-    User.findOne({ username: "chrisnguyen" })
+router.route('/information').post((req, res) => {
+    //nothing is being passed into req for some reason (It's null)
+    User.findOne({ username: req.body.name })
         .then(function (user) {
             return res.json(user)
         })

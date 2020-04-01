@@ -34,7 +34,7 @@ router.route('/login').post((req, res) => {
                     return;
                 } else {
                     if (result == true) {
-                        console.log('Correct password!')
+                        //Correct password
                         const loggedUser = { name: record.username, password: req.body.password }
                         const accessToken = jwt.sign(loggedUser, process.env.ACCESS_TOKEN_SECRET)
                         res.status(200).send(accessToken);

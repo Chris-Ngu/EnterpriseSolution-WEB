@@ -9,7 +9,7 @@ Picture
 User name -
 email - 
 password (censored out) - 
-date registered
+date registered-
 Project count
 
 Admin access to mongodb
@@ -36,14 +36,17 @@ export default class Settings extends Component {
         this.state = {
             name: '',
             password: '*****',
-            dateRegistered: ''
+            createdAt: '',
+            createdprojects: 0,
+            email: ''
+
         }
     }
 
     componentDidMount = () => {
         this.getToken();
     }
-    getToken() {
+    getToken = () => {
 
         const userToken = localStorage.getItem("JWT");
         if (!userToken) return alert('No web token found');
@@ -57,17 +60,16 @@ export default class Settings extends Component {
         this.setState({
             name: decoded.name
         });
-        
-        var foundUser = null;
+
         //double check not to return hash value
         Axios.post('http://localhost:5000/admin/information', decoded)
-            .then(function(user){
-                console.log(user.data)
-                //
-                //
-                // IF ADDED TO STATES, REMOVE LINE 61
-                //FIX THIS HERE (ASSIGN STATES OR ADD CONSTANTS)
-            });
+            .then(user => {
+                this.setState({
+                    email: user.data.email,
+                    createdprojects: user.data.createdprojects,
+                    createdAt: user.data.createdAt.substring(0,10)
+                })
+            })
 
     }
 
@@ -77,10 +79,14 @@ export default class Settings extends Component {
                 <Navbar />
                 <h1>User Settings</h1>
                 <b>Current user: {this.state.name}</b>
-                <br/>
+                <br />
                 <b>Password: {this.state.password}</b>
-                <br/>
-                <b>Registration date: {this.state.dateRegistered}</b>
+                <br />
+                <b>Email: {this.state.email}</b>
+                <br />
+                <b>Projects Submitted: {this.state.createdprojects}</b>
+                <br />
+                <b>Joined On: {this.state.createdAt}</b>
             </div>
         );
     }

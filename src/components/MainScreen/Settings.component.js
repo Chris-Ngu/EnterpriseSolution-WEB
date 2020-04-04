@@ -1,16 +1,14 @@
 import Navbar from '../Navbar.component';
 import React, { Component } from "react";
+import { Button, } from 'reactstrap';
+
 const dotenv = require("dotenv").config();
 const jwt = require('jsonwebtoken');
 const Axios = require('axios');
 
 /*
 Picture
-User name -
-email - 
-password (censored out) - 
-date registered-
-Project count
+
 
 Admin access to mongodb
 messager settings/ preferences (do not disturb, etc...)
@@ -38,8 +36,9 @@ export default class Settings extends Component {
             password: '*****',
             createdAt: '',
             createdprojects: 0,
-            email: ''
-
+            email: '',
+            passwordBox: false,
+            emailBox: false
         }
     }
 
@@ -72,17 +71,26 @@ export default class Settings extends Component {
             })
 
     }
-
     render() {
         return (
             <div>
                 <Navbar />
-                <h1>User Settings</h1>
+                <h2>User Settings</h2>
                 <b>Current user: {this.state.name}</b>
                 <br />
                 <b>Password: {this.state.password}</b>
+                <div className= "changePassword">
+                    <Button className="btn-lg btn-dark btn- block" >
+                        Change Password
+                    </Button>
+                </div>
                 <br />
                 <b>Email: {this.state.email}</b>
+                <div className= "changeEmail">
+                    <Button className="btn-lg btn-dark btn-block">
+                        Change Email
+                    </Button>
+                </div>
                 <br />
                 <b>Projects Submitted: {this.state.createdprojects}</b>
                 <br />

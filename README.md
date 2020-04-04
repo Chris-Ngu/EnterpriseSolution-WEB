@@ -11,13 +11,18 @@ The full stack implementation of [EnterpriseSolution](https://github.com/Chris-N
 
 # Working features
 * Login screen registration/ logging in with JWT integration
+* Project Screen pulling from MongoDB to display projects in queue (Not deleted)
 
 # WIP 
 * Login Screen: Double check the JWT integration, I can get passed by using the specific url(JWT Being deleted on some routes/ checks not working)
 
-* Project screen: Input creating user, add count and add who created; recreate UI with date looking a little nicer
+* Project screen: 
+* Input creating user, add count and add who created; recreate UI with date looking a little nicer
 * Flash message warning to alert of missing/ incorrect fields (registration and login)
 * Redesign the UI/ navbar integration to the left hand side for fluidity
+
+* Settings screen
+* Allow ability to change password and email
 
 * JWT Timer and refresh token
 * Move all jwt needed requests into one file

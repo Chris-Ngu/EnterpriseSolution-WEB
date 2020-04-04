@@ -36,10 +36,14 @@ The full stack implementation of [EnterpriseSolution](https://github.com/Chris-N
 * Convert console.log error logging to res.json
 
 # Photos
+* Please not that these are WIP and concepts are subject to change
+
 ![image](https://user-images.githubusercontent.com/57853013/75618629-c3d37c00-5b36-11ea-80fd-13a6152c778c.png)
 
 ![image](https://user-images.githubusercontent.com/57853013/75618616-94247400-5b36-11ea-8777-c0ee7992a38b.png)
 
 ![image](https://user-images.githubusercontent.com/57853013/78454232-67470d80-765c-11ea-8e6e-2c591c60ac08.png)
+
+![image](https://user-images.githubusercontent.com/57853013/78454790-e0942f80-765f-11ea-83b3-8488c07baa87.png)
 
 

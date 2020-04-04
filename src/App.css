@@ -19,25 +19,42 @@
   margin: auto;
   height: 100%;
 }
+.Project-form {
+  width: 50%;
+}
+.project {
+  height: 220px;
+  padding-bottom: 270px;
+  text-align: center;
+}
+.projectHeader {
+  text-align: center;
+  height: 0px;
+}
+.profileSettings {
+  text-align: center;
+  
+}
+.profilePicture {
+  display: block;
+  padding-left: 485px;
+  width: 50%;
+
+}
+.mainScreen {
+  text-align: center;
+}
+/*
+.changeEmail {
+  width: 17%;
+  margin: 0px;
+  height: 100%;
+  padding-left: 50%;
+  text-align: center;
+}
 .changePassword {
   width: 100%;
   margin: auto;
   height: 100%;
 }
-.changeEmail {
-  width: 17%;
-  margin: 0px;
-  height: 100%;
-}
-.project {
-  height: 220px;
-  padding-bottom: 270px;
-  text-align: left;
-
- 
-}
-.projectHeader {
-  text-align: center;
-  height: 0px;
-
-}
+*/

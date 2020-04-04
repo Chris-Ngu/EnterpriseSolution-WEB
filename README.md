@@ -25,6 +25,7 @@ The full stack implementation of [EnterpriseSolution](https://github.com/Chris-N
 * Project screen: 
 * Add stats of thumbs down, thumbs up with percentage
 * Redesign the UI/ navbar integration to the left hand side for fluidity
+* Align to the left, add a placeholder picure on the right
 
 * Settings screen
 * Allow ability to change password and email
@@ -38,5 +39,7 @@ The full stack implementation of [EnterpriseSolution](https://github.com/Chris-N
 ![image](https://user-images.githubusercontent.com/57853013/75618629-c3d37c00-5b36-11ea-80fd-13a6152c778c.png)
 
 ![image](https://user-images.githubusercontent.com/57853013/75618616-94247400-5b36-11ea-8777-c0ee7992a38b.png)
+
+![image](https://user-images.githubusercontent.com/57853013/78454232-67470d80-765c-11ea-8e6e-2c591c60ac08.png)
 
 

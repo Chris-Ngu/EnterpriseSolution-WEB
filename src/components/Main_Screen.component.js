@@ -7,9 +7,9 @@ import Navbar from './Navbar.component';
 export default class MainScreen extends Component {
     render() {
         return (
-            <div>
+            <div className= "mainScreen">
                 <Navbar />
-                <Jumbotron>
+                <Jumbotron className= "bg-transparent">
                     <h1 classname="display-3">Welcome!</h1>
                     <p classname="lead">We are currently under construction.</p>
                     <hr className="my-2" />

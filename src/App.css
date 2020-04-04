@@ -29,3 +29,15 @@
   margin: 0px;
   height: 100%;
 }
+.project {
+  height: 220px;
+  padding-bottom: 270px;
+  text-align: left;
+
+ 
+}
+.projectHeader {
+  text-align: center;
+  height: 0px;
+
+}

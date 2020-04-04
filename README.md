@@ -15,10 +15,15 @@ The full stack implementation of [EnterpriseSolution](https://github.com/Chris-N
 
 # WIP 
 * Login Screen: Double check the JWT integration, I can get passed by using the specific url(JWT Being deleted on some routes/ checks not working)
+* Flash message warning to alert of missing/ incorrect fields (registration and login)
+
+* Main screen:
+* Breadcrumbs
+* Carousel of logo/ stockholder pictures
+* Media page of workers
 
 * Project screen: 
-* Input creating user, add count and add who created; recreate UI with date looking a little nicer
-* Flash message warning to alert of missing/ incorrect fields (registration and login)
+* Add stats of thumbs down, thumbs up with percentage
 * Redesign the UI/ navbar integration to the left hand side for fluidity
 
 * Settings screen

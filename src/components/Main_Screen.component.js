@@ -18,7 +18,9 @@ export default class MainScreen extends Component {
                         <Button color="primary" type="button" onClick={(e) => {
                             e.preventDefault();
                             window.location.href = "http://github.com/chris-ngu";
-                        }}>Contact Me!</Button>
+                        }}>
+                            Contact Me!
+                        </Button>
                     </p>
                 </Jumbotron>
             </div>

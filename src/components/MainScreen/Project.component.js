@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
+import { Button, Jumbotron } from 'reactstrap';
 import { ButtonGroup } from 'react-bootstrap';
 import axios from 'axios';
 
@@ -28,22 +28,31 @@ export default class Project extends Component {
         if (!projects.length) return null;
         return projects.map((project, index) => (
 
-            <div key={index}>
-                <h3>{project.projName}</h3>
-                <h>Created User</h>
-                <p>{project.createduser}</p>
-                <h>Description:</h>
-                <p>{project.description}</p>
-                <h>Participating Members:</h>
-                <p>{project.members}</p>
-                <h>Start date</h>
-                <p>{project.startdate}</p>
-                <h>Finish date</h>
-                <p>{project.finishdate}</p>
+            <div className="project">
+                <div key={index}>
+                    <Jumbotron className="bg-transparent">
+                        <h1 classname="display-3">{project.projName}</h1>
+                        <b>Submitted member: {project.createduser}</b>
+                        <p classname="lead">Objective: {project.description}</p>
+                        <p>Start date: {project.startdate.substring(0, 10)}{' | '}End date: {project.finishdate.substring(0, 10)}</p>
+                        <p>Participating parties: {project.members}</p>
+                        <p className="lead">
+                            <Button color="success">Upvote</Button>{' '}
+                            <Button color="danger">Downvote</Button>
+                        </p>
+                        <hr className="pageBreak" />
+                    </Jumbotron>
 
+                </div>
             </div>
         ))
     }
+    /*
+                <h>Created User</h>
+                <p>{project.createduser}</p>
+
+
+    */
 
     getProjects = () => {
         axios.get('http://localhost:5000/project')
@@ -68,7 +77,7 @@ export default class Project extends Component {
         return (
             <div>
                 <Navbar />
-                <h2>Current Projects</h2>
+                <h2 className="projectHeader">Projects</h2>
                 <div className="Projects">
                     {this.displayProjects(this.state.projects)}
                 </div>

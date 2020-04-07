@@ -24,12 +24,20 @@
 }
 .project {
   height: 220px;
-  padding-bottom: 270px;
-  text-align: center;
+  padding-bottom: 370px;
+  text-align: left;
+}
+.belowPicture {
+  height: 220px;
+  padding-bottom: 370px;
+  text-align: left;
 }
 .projectHeader {
   text-align: center;
   height: 0px;
+}
+.projectPicture {
+  padding-left: 900px;
 }
 .profileSettings {
   text-align: center;

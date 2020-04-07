@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Button, Jumbotron } from 'reactstrap';
+import { Button, Jumbotron, Media } from 'reactstrap';
 import { ButtonGroup } from 'react-bootstrap';
 import axios from 'axios';
 
 import Box from './Project.box';
 import Navbar from '../Navbar.component';
+import myPlaceHolderPicture from '../../140x100.png'
 
 export default class Project extends Component {
     constructor(props) {
@@ -32,15 +33,20 @@ export default class Project extends Component {
                 <div key={index}>
                     <Jumbotron className="bg-transparent">
                         <h1 classname="display-3">{project.projName}</h1>
+                        <b>ID: {project._id}</b>
+                        <br></br>
                         <b>Submitted member: {project.createduser}</b>
-                        <p classname="lead">Objective: {project.description}</p>
-                        <p>Start date: {project.startdate.substring(0, 10)}{' | '}End date: {project.finishdate.substring(0, 10)}</p>
-                        <p>Participating parties: {project.members}</p>
-                        <p className="lead">
-                            <Button color="success">Upvote</Button>{' '}
-                            <Button color="danger">Downvote</Button>
-                        </p>
-                        <hr className="pageBreak" />
+                        <Media className="projectPicture" object src={myPlaceHolderPicture} alt="Generic placeholder image" />
+                        <div className="belowPicture">
+                            <p classname="lead">Objective: {project.description}</p>
+                            <p>Start date: {project.startdate.substring(0, 10)}{' | '}End date: {project.finishdate.substring(0, 10)}</p>
+                            <p>Participating parties: {project.members}</p>
+                            <p className="lead">
+                                <Button color="success">Upvote</Button>{' '}
+                                <Button color="danger">Downvote</Button>
+                            </p>
+                            <hr className="pageBreak" />
+                        </div>
                     </Jumbotron>
 
                 </div>

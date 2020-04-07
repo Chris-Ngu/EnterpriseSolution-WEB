@@ -28,6 +28,16 @@ const projectSchema = new Schema({
     createduser: {
         type: String,
         required: true
+    },
+    up:{
+        type: Number,
+        required: false,
+        default: 0
+    },
+    down:{
+        type: Number,
+        required: false,
+        default: 0
     }
 },{
     timestamps: true,

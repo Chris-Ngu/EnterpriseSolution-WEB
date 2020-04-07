@@ -14,26 +14,25 @@ The full stack implementation of [EnterpriseSolution](https://github.com/Chris-N
 * Project Screen pulling from MongoDB to display projects in queue (Not deleted)
 
 # WIP 
-* Login Screen: Double check the JWT integration, I can get passed by using the specific url(JWT Being deleted on some routes/ checks not working)
+# Login Screen
+* Double check the JWT integration, I can get passed by using the specific url(JWT Being deleted on some routes/ checks not working)
 * Flash message warning to alert of missing/ incorrect fields (registration and login)
 
--
-* Main screen:
+# Main screen:
 * Breadcrumbs
 * Carousel of logo/ stockholder pictures
 * Media page of workers
 
--
-* Project screen: 
+# Project screen: 
 * Add stats of thumbs down, thumbs up with percentage
 * Redesign the UI/ navbar integration to the left hand side for fluidity
 * Align to the left, add a placeholder picure on the right
+* Re-adjust the picture for each project (Layout.css)
 
--
-* Settings screen
+# Settings screen
 * Allow ability to change password and email
 
--
+# Ect...
 * JWT Timer and refresh token
 * Move all jwt needed requests into one file
 * REMOVE SECRET KEY/ CREATE NEW 

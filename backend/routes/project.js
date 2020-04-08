@@ -31,26 +31,30 @@ router.route('/add').post((req, res) => {
 });
 
 //Adding thumbs up/down
-
-router.route('thumbsup').post((req, res) => {
-    Project.findOneAndUpdate({ _id: req.body._id }, { $inc: { up: 1 } }, { new: true })
+router.route('/thumbs').post((req, res) => {
+    if (req.body.approve === 'up') {
+        console.log(req.body._id)
+        Project.findOneAndUpdate({ _id: req.body._id }, { $inc: { down: 1 } }, { new: true })
         .then((data) => {
             if (data === null) {
-                console.log('Project not found')
+                return console.log('Project not found')
             }
-            console.log('Project upvote updated')
+            return console.log('Project downvote updated')
         })
-})
-
-
-router.route('/thumbsdown').post((req, res) => {
-    Project.findOneAndUpdate({ _id: req.body._id }, { $inc: { down: 1 } }, { new: true })
+    }
+    else if (req.body.approve === 'down') {
+        console.log(req.body._id)
+        Project.findOneAndUpdate({ _id: req.body._id }, { $inc: { down: 1 } }, { new: true })
         .then((data) => {
             if (data === null) {
-                console.log('Project not found')
+                return console.log('Project not found')
             }
-            console.log('Project downvote updated')
+            return console.log('Project downvote updated')
         })
+    }
+    else{
+        return console.log("Server error")
+    }
 })
 
 module.exports = router;

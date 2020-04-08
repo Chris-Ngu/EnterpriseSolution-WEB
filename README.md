@@ -24,7 +24,7 @@ The full stack implementation of [EnterpriseSolution](https://github.com/Chris-N
 * Media page of workers
 
 # Project screen: 
-* Add stats of thumbs down, thumbs up with percentage
+* Add stats of thumbs down, thumbs up with percentage (Need to get project data)
 * Redesign the UI/ navbar integration to the left hand side for fluidity
 * Align to the left, add a placeholder picure on the right
 * Re-adjust the picture for each project (Layout.css)

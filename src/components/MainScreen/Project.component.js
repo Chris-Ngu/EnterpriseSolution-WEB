@@ -42,19 +42,33 @@ export default class Project extends Component {
                             <p>Start date: {project.startdate.substring(0, 10)}{' | '}End date: {project.finishdate.substring(0, 10)}</p>
                             <p>Participating parties: {project.members}</p>
                             <p className="lead">
-                                
-                                <Button color="success" onClick={(project) =>
-                                    Axios.post('http://localhost:5000/project/thumbsdown', project._id)
+
+                                <Button color="success" onClick={(project) => {
+                                    //Get user here
+                                    const request = {
+                                        _id: project._id,
+                                        approve: "down",
+                                        user: "chrisnguyen"
+                                    };
+                                    Axios.post('http://localhost:5000/project/thumbs', request)
                                         .then(res => console.log(res.data))
-                                        .catch((err) => console.log("Error: " + err))
+                                        .catch((err) => console.log("Error: " + err));
+                                }
                                 }>
                                     Upvote
                                 </Button>{' '}
 
-                                <Button color="danger" onClick={(project) =>
-                                    Axios.post('http://localhost:5000/project/thumbsdown', project._id)
+                                <Button color="danger" onClick={(project) => {
+                                    //Get user here
+                                    const request = {
+                                        _id: project._id,
+                                        approve: "down",
+                                        user: "chrisnguyen"
+                                    };
+                                    Axios.post('http://localhost:5000/project/thumbs', request)
                                         .then(res => console.log(res.data))
-                                        .catch((err) => console.log("Error: " + err))
+                                        .catch((err) => console.log("Error: " + err));
+                                }
                                 }>
                                     Downvote
                                 </Button>

@@ -19,6 +19,10 @@
   margin: auto;
   height: 100%;
 }
+.SubmitRequest{
+  text-align: center;
+  padding-left: 400px;
+}
 .Project-form {
   width: 50%;
 }

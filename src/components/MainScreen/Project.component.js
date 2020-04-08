@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Jumbotron, Media } from 'reactstrap';
 import { ButtonGroup } from 'react-bootstrap';
-import axios from 'axios';
+import Axios from 'axios';
 
 import Box from './Project.box';
 import Navbar from '../Navbar.component';
@@ -42,8 +42,24 @@ export default class Project extends Component {
                             <p>Start date: {project.startdate.substring(0, 10)}{' | '}End date: {project.finishdate.substring(0, 10)}</p>
                             <p>Participating parties: {project.members}</p>
                             <p className="lead">
-                                <Button color="success">Upvote</Button>{' '}
-                                <Button color="danger">Downvote</Button>
+                                
+                                <Button color="success" onClick={(project) =>
+                                    Axios.post('http://localhost:5000/project/thumbsdown', project._id)
+                                        .then(res => console.log(res.data))
+                                        .catch((err) => console.log("Error: " + err))
+                                }>
+                                    Upvote
+                                </Button>{' '}
+
+                                <Button color="danger" onClick={(project) =>
+                                    Axios.post('http://localhost:5000/project/thumbsdown', project._id)
+                                        .then(res => console.log(res.data))
+                                        .catch((err) => console.log("Error: " + err))
+                                }>
+                                    Downvote
+                                </Button>
+
+                                <p>Upvotes: {project.up} {'   '}Downvotes: {project.down}</p>
                             </p>
                             <hr className="pageBreak" />
                         </div>
@@ -53,15 +69,9 @@ export default class Project extends Component {
             </div>
         ))
     }
-    /*
-                <h>Created User</h>
-                <p>{project.createduser}</p>
-
-
-    */
 
     getProjects = () => {
-        axios.get('http://localhost:5000/project')
+        Axios.get('http://localhost:5000/project')
             .then((response) => {
                 const data = response.data;
                 this.setState({

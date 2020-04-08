@@ -38,6 +38,11 @@ const projectSchema = new Schema({
         type: Number,
         required: false,
         default: 0
+    },
+    voted:{
+        type: [String],
+        required: false,
+        default: []
     }
 },{
     timestamps: true,

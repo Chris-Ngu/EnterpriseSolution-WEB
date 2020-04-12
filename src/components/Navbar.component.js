@@ -1,7 +1,7 @@
 
 import React, { Component, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Dropdown } from 'reactstrap';
 
 const Example = (props) => {
     const [dropdownOpen, setOpen] = useState(false);
@@ -13,38 +13,46 @@ const Example = (props) => {
             <Link to="/home" className="navbar-brand">EnterpriseSolution</Link>
             <div className="collpase navbar-collapse">
                 <ul className="navbar-nav mr-auto">
-
-                    <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
-                        <DropdownToggle caret>
-                            ButtonDropdown
-                        </DropdownToggle>
-                        <DropdownMenu>
-                            <DropdownItem header>Header</DropdownItem>
-                            <DropdownItem disabled>Action</DropdownItem>
-                            <DropdownItem>Another Action</DropdownItem>
-                            <DropdownItem divider />
-                            <DropdownItem>Another Action</DropdownItem>
-                        </DropdownMenu>
-                    </ButtonDropdown>
-
                     <li className="navbar-item">
                         <Link to="/project" className="nav-link">Projects</Link>
                     </li>
-                    <li className="navbar-item">
-                        <Link to="/message" className="nav-link">Messages</Link>
-                    </li>
-                    <li className="navbar-item">
-                        <Link to="/settings" className="nav-link">Settings</Link>
-                    </li>
+                    <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
+                        <DropdownToggle caret>
+                            Messaging
+                        </DropdownToggle>
+                        <DropdownMenu>
+                            <DropdownItem>
+                                <Link to="/message">
+                                    Enterprise Messaging
+                                </Link>
+                            </DropdownItem>
+                            <DropdownItem>
+                                <Link to="/external">
+                                    External Messanger
+                                </Link>
+                            </DropdownItem>
+                        </DropdownMenu>
+                    </ButtonDropdown>
                     <li className="navbar-item">
                         <Link to="/calendar" className="nav-link">Calender</Link>
                     </li>
-                    <li className="navbar-item">
-                        <Link to="/management" className="nav-link">Management</Link>
-                    </li>
-                    <li className="navbar-item">
-                        <Link to="/external" className="nav-link">External Messanger</Link>
-                    </li>
+                    <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
+                        <DropdownToggle caret>
+                            Settings
+                        </DropdownToggle>
+                        <DropdownMenu>
+                            <DropdownItem>
+                                <Link to="/settings">
+                                    User Settings
+                            </Link>
+                            </DropdownItem>
+                            <DropdownItem>
+                                <Link to="/management">
+                                    Admin Management
+                            </Link>
+                            </DropdownItem>
+                        </DropdownMenu>
+                    </ButtonDropdown>
                     <div className="pull-right">
                         <li className="navbar-item-right" >
                             <Link to="/" className="nav-link" onClick={() => {

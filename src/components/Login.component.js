@@ -14,7 +14,8 @@ export default class Login extends Component {
 
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            errorMessage: ''
         }
 
     }
@@ -44,10 +45,8 @@ export default class Login extends Component {
         }); 
         
         this.setState({
-            username: '',
-            password: ''
+            errorMessage: 'Please double check that you entered a valid user/ password combination'
         });
-        //
 
     }
 
@@ -58,7 +57,9 @@ export default class Login extends Component {
                 <h1>
                     <center><span className="font-weight-bold">Enterprise</span>Solution</center>
                 </h1>
+
                 <h2 className="text-center">Welcome</h2>
+
                 <FormGroup>
                     <label>Username</label>
                     <Input type="text"
@@ -69,6 +70,7 @@ export default class Login extends Component {
                         onChange={this.onChangeUsername}
                     />
                 </FormGroup>
+
                 <FormGroup>
                     <label>Password</label>
                     <Input type="password"
@@ -81,7 +83,10 @@ export default class Login extends Component {
                 </FormGroup>
                 <Button className="btn-lg btn-dark btn-block" type="submit">
                     Log in
-                    </Button>
+                </Button>
+
+                <div className='text-center' style={{color: 'red'}}>{this.state.errorMessage}</div>
+
                 <div className="text-center pt-3 mb-3">
                     <a href="/register">Register</a>
                     <span className="p-2">|</span>

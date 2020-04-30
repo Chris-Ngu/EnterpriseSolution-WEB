@@ -37,6 +37,11 @@ export default class Register extends Component {
     }
     onSubmit(e) {
         e.preventDefault();
+        
+        /*
+            Check to see if a user is already registered by pulling from Mongoose backend
+        */
+
         const user = {
             username: this.state.username,
             password: this.state.password,
@@ -77,7 +82,7 @@ export default class Register extends Component {
                 <FormGroup>
                     <label>Email*</label>
                     <Input type="email"
-                        placeholder="email"
+                        placeholder="Email@example.com"
                         required
                         className="form-control"
                         value={this.state.email}
@@ -87,10 +92,12 @@ export default class Register extends Component {
                 <FormGroup>
                     <label>Password*</label>
                     <Input type="password"
-                        placeholder="Password"
+                        placeholder="⚈⚈⚈⚈⚈"
                         className="form-control"
                         value={this.state.password}
                         onChange={this.onChangePassword}
+                        required minLength={5}
+                        pattern="(?=.*\d)(?=.*[a-z]).{5,}" title="Must contain at least one number and letter"
                     />
                 </FormGroup>
                 <Button className="btn-lg btn-dark btn-block" type="submit">

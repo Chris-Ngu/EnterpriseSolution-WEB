@@ -13,7 +13,8 @@ export default class Forgot extends Component {
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            email: ''
+            email: '',
+            successMessage: ''
         }
     }
 
@@ -28,14 +29,14 @@ export default class Forgot extends Component {
             email: this.state.email
         };
 
-        console.log(user);
         //axios response here(probably GET)
         this.setState({
-            email: ''
+            email: '',
+            successMessage:'If the email you provided is attached to an account, you should be receiving a password reset request shortly; hang tight!'
         });
 
-        //set redirect here or flash message if failure
-        window.location = '/';
+        
+        
     }
 
     render() {
@@ -45,6 +46,7 @@ export default class Forgot extends Component {
                     <center><span className="font-weight-bold">Forgot</span>Password?</center>
                 </h1>
                 <h2 className="text-center">No worries!</h2>
+
                 <FormGroup>
                     <label>Email</label>
                     <Input type="email"
@@ -55,9 +57,13 @@ export default class Forgot extends Component {
                         onChange={this.onChangeEmail}
                     />
                 </FormGroup>
+
                 <Button className="btn-lg btn-dark btn-block" type="submit">
                     Submit
                 </Button>
+
+                <div className='text-center' style={{color: 'blue'}}>{this.state.successMessage}</div>
+
                 <div className="text-center pt-3 mb-3">
                     <a href="/">Back to Login screen</a>
                 </div>

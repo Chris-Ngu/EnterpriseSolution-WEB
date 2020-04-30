@@ -16,7 +16,7 @@ The full stack implementation of [EnterpriseSolution](https://github.com/Chris-N
 # WIP 
 # Login Screen
 * Double check the JWT integration, I can get passed by using the specific url(JWT Being deleted on some routes/ checks not working)
-* Flash message warning to alert of missing/ incorrect fields (registration and login)
+* Registration screen: overwriting pre-existing user, need to check if user exists first before allowing registration
 
 # Main screen:
 * Breadcrumbs

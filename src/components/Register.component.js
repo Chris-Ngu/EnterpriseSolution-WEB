@@ -16,7 +16,8 @@ export default class Register extends Component {
         this.state = {
             username: '',
             password: '',
-            email: ''
+            email: '',
+            errorMessage: ''
         }
     }
 
@@ -37,10 +38,19 @@ export default class Register extends Component {
     }
     onSubmit(e) {
         e.preventDefault();
+
+        //BUGFIX THIS
+        const checking = {
+            name: this.state.username
+        }
         
-        /*
-            Check to see if a user is already registered by pulling from Mongoose backend
-        */
+        Axios.post('http://localhost:5000/admin/checkIfUserExists', checking)
+            .then(() => {
+                this.setState({
+                    errorMessage: 'User already exists, please choose a different name'
+                })
+            })
+
 
         const user = {
             username: this.state.username,
@@ -56,10 +66,11 @@ export default class Register extends Component {
         this.setState({
             username: '',
             password: '',
-            email: ''
+            email: '',
+            errorMessage: ''
         });
         //either redirect or post success 
-        window.location = '/';
+        //window.location = '/';
     }
 
     render() {
@@ -100,6 +111,7 @@ export default class Register extends Component {
                         pattern="(?=.*\d)(?=.*[a-z]).{5,}" title="Must contain at least one number and letter"
                     />
                 </FormGroup>
+                <div className="text-center" style={{ color: 'red' }}>{this.state.errorMessage}</div>
                 <Button className="btn-lg btn-dark btn-block" type="submit">
                     Submit
                     </Button>

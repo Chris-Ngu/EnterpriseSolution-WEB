@@ -85,15 +85,27 @@ router.route('/projectadd').post((req, res) => {
         })
 })
 
-//Get all of user information
+//Used for setting screen, pulls and shows user information
 router.route('/information').post((req, res) => {
-    //nothing is being passed into req for some reason (It's null)
     User.findOne({ username: req.body.name })
         .then(function (user) {
             return res.json(user)
         })
         .catch(function (err) {
-            console.log(err);
+            console.log('Error: ' + err)
+        })
+
+})
+
+//Can probably combine this with /information, would need to check (dangerous to send all information)
+router.route('/checkIfUserExists').post((req, res) => {
+    User.findOne({ username: req.body.name })
+        .then(function (user) {
+            console.log('User found')
+            return res.json(user.username)
+        })
+        .catch(function (err) {
+            console.log('Error: ' + err)
         })
 
 })

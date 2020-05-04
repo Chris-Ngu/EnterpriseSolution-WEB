@@ -17,8 +17,9 @@ export default class Register extends Component {
             username: '',
             password: '',
             email: '',
-            errorMessage: ''
-        }
+            errorMessage: '',
+            errorState: false
+        };
     }
 
     onChangeUsername(e) {
@@ -37,40 +38,41 @@ export default class Register extends Component {
         });
     }
     onSubmit(e) {
-        e.preventDefault();
+        e.preventDefault()
 
-        //BUGFIX THIS
+        this.setState({ errorState: false })
         const checking = {
             name: this.state.username
         }
-        
+
+        //for some reason this doesn't set the state of the errorstate or message, but does render the text
+        //Async calls most likely causing this
         Axios.post('http://localhost:5000/admin/checkIfUserExists', checking)
-            .then(() => {
+            .then(response => {
                 this.setState({
-                    errorMessage: 'User already exists, please choose a different name'
+                    errorState: true,
+                    errorMessage: "User already exists, please try a different username"
                 })
             })
 
+        if (this.state.errorState === false) {
+            const user = {
+                username: this.state.username,
+                password: this.state.password,
+                email: this.state.email
+            };
 
-        const user = {
-            username: this.state.username,
-            password: this.state.password,
-            email: this.state.email
-        };
+            Axios.post('http://localhost:5000/admin/add', user)
+                .then(res => console.log(res.data));
 
-        console.log(user);
-
-        Axios.post('http://localhost:5000/admin/add', user)
-            .then(res => console.log(res.data));
-
-        this.setState({
-            username: '',
-            password: '',
-            email: '',
-            errorMessage: ''
-        });
-        //either redirect or post success 
-        //window.location = '/';
+            this.setState({
+                username: '',
+                password: '',
+                email: '',
+                errorMessage: ''
+            });
+            //window.location = '/';
+        }
     }
 
     render() {
@@ -112,7 +114,7 @@ export default class Register extends Component {
                     />
                 </FormGroup>
                 <div className="text-center" style={{ color: 'red' }}>{this.state.errorMessage}</div>
-                <Button className="btn-lg btn-dark btn-block" type="submit">
+                <Button className="btn-lg btn-dark btn-block" onClick={this.onSubmit}>
                     Submit
                     </Button>
                 <div className="text-center pt-3 mb-3">

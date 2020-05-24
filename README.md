@@ -19,6 +19,7 @@ The full stack implementation of [EnterpriseSolution](https://github.com/Chris-N
 * Registration screen: overwriting pre-existing user, need to check if user exists first before allowing registration
 
 # Main screen:
+* Twitter like feed of employee activities
 * Breadcrumbs
 * Carousel of logo/ stockholder pictures
 * Media page of workers

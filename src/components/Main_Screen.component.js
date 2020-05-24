@@ -7,6 +7,7 @@ import Navbar from './Navbar.component';
 export default class MainScreen extends Component {
     render() {
         return (
+            
             <div className= "mainScreen">
                 <Navbar />
                 <Jumbotron className= "bg-transparent">

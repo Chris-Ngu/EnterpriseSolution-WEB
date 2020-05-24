@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Dropdown } from 'reactstrap';
 
 const Example = (props) => {
-    const [dropdownOpen, setOpen] = useState(false);
+    const [settingDropdownOpen, setOpen] = useState(false);
+    const settingToggle = () => setOpen(!settingDropdownOpen);
 
-    const toggle = () => setOpen(!dropdownOpen);
+    const [messageDropdownOpen, messageSetOpen] = useState(false);
+    const messageToggle = () => messageSetOpen(!messageDropdownOpen);
 
     return (
         <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
@@ -16,7 +18,7 @@ const Example = (props) => {
                     <li className="navbar-item">
                         <Link to="/project" className="nav-link">Projects</Link>
                     </li>
-                    <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
+                    <ButtonDropdown isOpen={messageDropdownOpen} toggle={messageToggle}>
                         <DropdownToggle caret>
                             Messaging
                         </DropdownToggle>
@@ -36,7 +38,7 @@ const Example = (props) => {
                     <li className="navbar-item">
                         <Link to="/calendar" className="nav-link">Calender</Link>
                     </li>
-                    <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
+                    <ButtonDropdown isOpen={settingDropdownOpen} toggle={settingToggle}>
                         <DropdownToggle caret>
                             Settings
                         </DropdownToggle>

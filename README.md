@@ -22,6 +22,7 @@ The full stack implementation of [EnterpriseSolution](https://github.com/Chris-N
 * Breadcrumbs
 * Carousel of logo/ stockholder pictures
 * Media page of workers
+* Animation with keyframes
 
 # Project screen: 
 * Add stats of thumbs down, thumbs up with percentage (Need to get project data)

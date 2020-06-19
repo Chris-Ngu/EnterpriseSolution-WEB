@@ -12,27 +12,27 @@ class Authenticate extends Component {
         }
     }
 
-    componentDidMount(){
-        const jwt = getJWT() 
-        if (!jwt){
+    componentDidMount() {
+        const jwt = getJWT()
+        if (!jwt) {
             this.setState({
                 user: null
             });
             return;
         }
 
-        axios.get('/getUser/', {headers: { Authorization: `Bearer ${jwt}`} })
-        .then(res => res.setState({
-            user: res.data
-        }))
-        .catch(err => {
-            localStorage.removeItem('JWT');
-            this.props.history.push('/');
-        });
+        axios.get('/getUser/', { headers: { Authorization: `Bearer ${jwt}` } })
+            .then(res => res.setState({
+                user: res.data
+            }))
+            .catch(err => {
+                localStorage.removeItem('JWT');
+                this.props.history.push('/');
+            });
     }
 
     render() {
-        if(this.state.user === undefined){
+        if (this.state.user === undefined) {
             return (
                 <div><h1></h1></div>
             );

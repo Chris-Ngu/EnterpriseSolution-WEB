@@ -1,7 +1,8 @@
 /*
     Allow user input for event creation
+    possibly show events with modal window
 
-    Save events to JSON
+    Save events to backend
     allow users to edit event
     show users event information
     create refresh function to component
@@ -9,7 +10,7 @@
 
 import Navbar from '../Navbar.component';
 import React, { Component } from 'react';
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter, Button, Row, Col, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 
 import FullCalender from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -21,7 +22,11 @@ export default class Calendar extends Component {
 
         this.state = {
             modal: false,
-            setModal: false
+            setModal: false,
+
+            title: '',
+            description: '',
+
         }
 
     }
@@ -31,15 +36,24 @@ export default class Calendar extends Component {
             modal: !(this.state.modal)
         });
     }
+    handleMouseHover = () => {
 
-    handleEventClick = () => {
+    }
+
+    handleEventClick = (info) => {
         //modal showing event information
+        alert('Event: ' + info.event.title);
     }
     componentDidMount = () => {
         //call component refresh
     }
     handleEventClick = () => {
         //Show information about the event
+    }
+
+    submitNewEvent = () => {
+        //Error handle user inputs
+
     }
 
     render() {
@@ -50,7 +64,6 @@ export default class Calendar extends Component {
                 <FullCalender
                     defaultView="dayGridMonth"
                     plugins={[dayGridPlugin, interactionPlugin]}
-                    editable={true}
                     eventClick={this.handleEventClick}
                     dateClick={this.handleDateClick}
                     events={
@@ -62,10 +75,27 @@ export default class Calendar extends Component {
                 />
 
                 <Modal isOpen={this.state.modal}>
-                    <ModalHeader>Create Event</ModalHeader>
+                    <ModalHeader>
+                        Create Event
+                        Please fill in the information below
+                    </ModalHeader>
+
+                    <ModalBody>
+                        <Form>
+                            <Row form>
+                                <Col md={6}>
+                                    <FormGroup>
+                                        <label for="firstName">First Name</label>
+                                        <Input type="text" name="text" id="firstNameBox" placeholder="John" />
+                                    </FormGroup>
+                                </Col>
+                            </Row>
+                        </Form>
+                    </ModalBody>
+
                     <ModalFooter>
-                        <Button color="primary" onClick={this.handleDateClick}>Do Something</Button>{' '}
-                        <Button color='secondary' onCLick={this.handleDateClick}>Cancel</Button>
+                        <Button color="primary" onClick={this.submitNewEvent}>Do Something</Button>
+                        <Button color='secondary' onClick={this.handleDateClick}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
 

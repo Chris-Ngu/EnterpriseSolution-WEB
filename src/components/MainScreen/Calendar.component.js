@@ -1,4 +1,6 @@
 /*
+    Allow user input for event creation
+
     Save events to JSON
     allow users to edit event
     show users event information
@@ -7,19 +9,31 @@
 
 import Navbar from '../Navbar.component';
 import React, { Component } from 'react';
+import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
 
 import FullCalender from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 
-
 export default class Calendar extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            modal: false,
+            setModal: false
+        }
+
+    }
+
+    handleDateClick = () => {
+        this.setState({
+            modal: !(this.state.modal)
+        });
     }
 
     handleEventClick = () => {
-        //Allow user to create an event here
+        //modal showing event information
     }
     componentDidMount = () => {
         //call component refresh
@@ -37,7 +51,6 @@ export default class Calendar extends Component {
                     defaultView="dayGridMonth"
                     plugins={[dayGridPlugin, interactionPlugin]}
                     editable={true}
-                    eventDrop={this.handleEventDrop}
                     eventClick={this.handleEventClick}
                     dateClick={this.handleDateClick}
                     events={
@@ -47,6 +60,15 @@ export default class Calendar extends Component {
                     }
 
                 />
+
+                <Modal isOpen={this.state.modal}>
+                    <ModalHeader>Create Event</ModalHeader>
+                    <ModalFooter>
+                        <Button color="primary" onClick={this.handleDateClick}>Do Something</Button>{' '}
+                        <Button color='secondary' onCLick={this.handleDateClick}>Cancel</Button>
+                    </ModalFooter>
+                </Modal>
+
             </div>
         )
     }

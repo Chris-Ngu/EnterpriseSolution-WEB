@@ -3,6 +3,8 @@ The full stack implementation of [EnterpriseSolution](https://github.com/Chris-N
 
 * I decided to convert this to a web based application because I had a lot of networking libraries and frameworks I relied on and thought it would be more fluid if it was implemented in the enviornment it was trying to operate in.
 
+*Major disclaimer: this is not intended for production. The styling of the codebase varies ALOT (Using reactstrap, then all of a sudden using bootstrap, coding styles). I used this to learn the MERN stack and I am planning to refactor/ rebuild this from the ground up with the stuff I have learned so far! There will be a ES-WEB 2.0 branch in the future that will be merged into master. This should fix the biggest underlying bugs that are caused by the structure of the project itself*
+
 # Technologies
 * MongoDB
 * Express
@@ -39,6 +41,8 @@ The full stack implementation of [EnterpriseSolution](https://github.com/Chris-N
 * Move all jwt needed requests into one file
 * REMOVE SECRET KEY/ CREATE NEW 
 * Convert console.log error logging to res.json
+   
+*Yes there are a lot of things to do, but that's the joy of experimenting with a stack :)*
 
 
 # Photos

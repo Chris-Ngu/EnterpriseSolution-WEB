@@ -1,7 +1,8 @@
 /*
-    Connect values to actual form (update values, current state holding value, add value to datepicker component)
-    Show existing created events
+    ERROR HANDLE USER INPUTS FOR EVENT BEFORE AXIOS RESPONSE
 
+    Show existing created events
+    Somehow detect which date is being selected(Nap function?)
     Save events to backend
     allow users to edit event
     show users event information
@@ -11,6 +12,7 @@
 import Navbar from '../Navbar.component';
 import React, { Component } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button, Row, Col, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
+import Axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -22,15 +24,31 @@ export default class Calendar extends Component {
     constructor(props) {
         super(props);
 
+        this.handleDateClick = this.handleDateClick.bind(this);
+        this.handleEventClick = this.handleEventClick.bind(this);
+        this.submitNewEvent = this.submitNewEvent.bind(this);
+        this.pullEventsFromDatabase = this.pullEventsFromDatabase.bind(this);
+
+        this.titleChange = this.titleChange.bind(this);
+        this.descriptionChange = this.descriptionChange.bind(this);
+        this.urgencyChange = this.urgencyChange.bind(this);
+        this.dateChange = this.dateChange.bind(this);
+
         this.state = {
             modal: false,
             setModal: false,
 
             title: '',
             description: '',
+            urgency: '',
+            date: new Date()
 
         }
 
+    }
+    componentDidMount = () => {
+        //Pull all events for the current MONTH, set it FullCalendar Dates property
+        this.pullEventsFromDatabase();
     }
 
     handleDateClick = () => {
@@ -38,24 +56,46 @@ export default class Calendar extends Component {
             modal: !(this.state.modal)
         });
     }
-    handleMouseHover = () => {
-
-    }
 
     handleEventClick = (info) => {
         //modal showing event information
         alert('Event: ' + info.event.title);
     }
-    componentDidMount = () => {
-        //call component refresh
-    }
-    handleEventClick = () => {
-        //Show information about the event
-    }
 
     submitNewEvent = () => {
-        //Error handle user inputs
+        let newEvent = new Appointment("NAME HERE", this.state.title, this.state.date, this.state.description, this.state.urgency)
 
+
+
+    }
+    pullEventsFromDatabase = () => {
+        //Axios response to pull all events from database
+        //FullCalendar event attribute, call this function/ state to update
+    }
+
+    titleChange = (event) => {
+        this.setState({
+            title: event.target.value
+        });
+    }
+
+    descriptionChange = (event) => {
+        this.setState({
+            description: event.target.value
+        });
+    }
+
+    urgencyChange = (event) => {
+        event.preventDefault(event);
+        this.setState({
+            urgency: event.target.value
+        });
+    }
+
+    dateChange = (date) => {
+        this.setState({
+            date: date
+        })
     }
 
     render() {
@@ -87,26 +127,26 @@ export default class Calendar extends Component {
                             <FormGroup row>
                                 <Label for="eventHeader" sm={2}>Title</Label>
                                 <Col sm={10}>
-                                    <Input type="text" name="eventHeader" id="eventHeaderBox" placeholder="Title" />
+                                    <Input type="text" name="eventHeader" id="eventHeaderBox" placeholder="Title" onChange={this.titleChange} />
                                 </Col>
                             </FormGroup>
 
                             <FormGroup row>
                                 <Label for="description" sm={2}>Description</Label>
                                 <Col sm={10}>
-                                    <Input type="textarea" name="description" id="descriptionBox" placeholder="Description" />
+                                    <Input type="textarea" name="description" id="descriptionBox" placeholder="Description" onChange={this.descriptionChange} />
                                 </Col>
                             </FormGroup>
 
                             <FormGroup row>
                                 <Label for="exampleSelect" sm={2}>Urgency rating</Label>
                                 <Col sm={10}>
-                                    <Input type="select" name="select" id="exampleSelect">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                    <Input type="select" name="select" id="exampleSelect" value={this.state.urgency} onChange={this.urgencyChange}>
+                                        <option value='1'>1</option>
+                                        <option value='2'>2</option>
+                                        <option value='3'>3</option>
+                                        <option value='4'>4</option>
+                                        <option value='5'>5</option>
                                     </Input>
                                 </Col>
                             </FormGroup>
@@ -114,7 +154,10 @@ export default class Calendar extends Component {
                             <FormGroup row>
                                 <Label for="calendar" sm={2}>Date</Label>
                                 <Col sm={10}>
-                                    <DatePicker />
+                                    <DatePicker 
+                                        selected={this.state.date}
+                                        onChange={this.dateChange}
+                                    />
                                 </Col>
                             </FormGroup>
 
@@ -133,8 +176,9 @@ export default class Calendar extends Component {
 }
 
 class Appointment {
-    constructor(name, date, description, urgency) {
+    constructor(name, title, date, description, urgency) {
         this.name = name;
+        this.title = title;
         this.date = date;
         this.description = description;
         this.urgency = urgency;
